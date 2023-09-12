@@ -12,7 +12,6 @@ public class Stove {
 	// Our stove will have 4 burners
 	public final static int NUM_BURNERS = 4;
 	private ArrayList<Burner> burners; 
-	
 	/** 
 	 * Constructor for the stove
 	 * Set up the burners
@@ -30,7 +29,8 @@ public class Stove {
 	 **** You must write the following method ****
 	 */
 	public void displayStove() {
-
+		for(Burner b: burners)
+			System.out.println(b);
 	}
 	
 	/**

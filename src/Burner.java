@@ -27,11 +27,11 @@ public class Burner {
 				break;
 			
 			case LOW:
-				mySetting = Setting.LOW;
+				mySetting = Setting.MEDIUM;
 				break;
 			
 			case MEDIUM:
-				mySetting = Setting.MEDIUM;
+				mySetting = Setting.HIGH;
 				break;
 				
 			case HIGH:
@@ -46,6 +46,7 @@ public class Burner {
 	public void minusButton() {
 		
 		timer = TIME_DURATION; 
+		
 		switch(mySetting) {
 		
 			case OFF:
@@ -70,9 +71,13 @@ public class Burner {
 	}
 	
 	public void updateTemperature() {
-		
-		timer--;
-		
+
+		if(timer > 0) {
+			timer--;
+		}
+		if(timer > 0) {
+			return;
+		}
 		switch(myTemperature) {
 		
 			case BLAZING:
@@ -86,6 +91,8 @@ public class Burner {
 			case HOT:
 				if(mySetting == Setting.HIGH)
 					myTemperature = Temperature.BLAZING;
+				else if(mySetting == Setting.MEDIUM)
+					myTemperature = Temperature.HOT;
 				else {
 					myTemperature = Temperature.WARM;
 				}
@@ -93,7 +100,7 @@ public class Burner {
 			case WARM:
 				if(mySetting == Setting.HIGH ||mySetting == Setting.MEDIUM)
 					myTemperature = Temperature.HOT;
-				else 
+				else if(mySetting == Setting.OFF)
 					myTemperature = Temperature.COLD;
 				break;
 			default:
